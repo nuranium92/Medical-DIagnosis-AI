@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedAI Diagnosis</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/dist/iife/index.js"></script>
+</head>
+<body>
+
+    <header class="header">
+        <div class="header-inner">
+            <div class="logo">
+                <i class="ph ph-heartbeat logo-icon"></i>
+                <span class="logo-text">MedAI Diagnosis</span>
+                <span class="logo-by">by nuranium</span>
+            </div>
+            <nav class="tab-nav">
+                <button class="tab-btn active" data-tab="lung">
+    <i class="ph ph-heartbeat"></i>
+    <span>Ağciyər</span>
+</button>
+                <button class="tab-btn" data-tab="brain">
+                    <i class="ph ph-brain"></i>
+                    <span>Beyin MRI</span>
+                </button>
+                <button class="tab-btn" data-tab="symptom">
+                    <i class="ph ph-clipboard-text"></i>
+                    <span>Simptom</span>
+                </button>
+                <button class="tab-btn" data-tab="chat">
+                    <i class="ph ph-chat-circle-dots"></i>
+                    <span>F&A</span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+
+        <section id="tab-lung" class="tab-section active">
+            <div class="section-header">
+                <div class="section-title-row">
+                    <i class="ph ph-lungs section-icon"></i>
+                    <div>
+                        <h2>Ağciyər Rentgeni Analizi</h2>
+                        <p>Normal vs Pnevmoniya klassifikasiyası</p>
+                    </div>
+                </div>
+            </div>
+            <div class="analysis-layout">
+                <div class="upload-panel">
+                    <div class="upload-area" id="lung-upload-area">
+                        <input type="file" id="lung-file" accept="image/*" hidden>
+                        <div class="upload-placeholder" id="lung-placeholder">
+                            <i class="ph ph-cloud-arrow-up upload-icon"></i>
+                            <p>Şəkil yükləmək üçün klikləyin</p>
+                            <span class="upload-hint">PNG, JPG — maks 10MB</span>
+                        </div>
+                        <img id="lung-preview" class="preview-img hidden" alt="preview">
+                    </div>
+                    <button class="btn-primary" id="lung-analyze-btn" disabled>
+                        <i class="ph ph-magnifying-glass"></i>
+                        Analiz Et
+                    </button>
+                </div>
+                <div class="result-panel">
+                    <div class="result-placeholder" id="lung-result-placeholder">
+                        <i class="ph ph-image-square"></i>
+                        <p>Şəkil yükləyin və analiz edin</p>
+                    </div>
+                    <div class="loader hidden" id="lung-loader">
+                        <div class="spinner"></div>
+                        <p>Analiz edilir...</p>
+                    </div>
+                    <div class="result-content hidden" id="lung-result-content">
+                        <div class="diagnosis-badge" id="lung-badge"></div>
+                        <div class="charts-row">
+                            <div class="chart-box">
+                                <div class="chart-title">
+                                    <i class="ph ph-chart-bar"></i>
+                                    <h4>Ehtimal Diaqramı</h4>
+                                </div>
+                                <img id="lung-prob-chart" alt="prob chart">
+                            </div>
+                            <div class="chart-box">
+                                <div class="chart-title">
+                                    <i class="ph ph-eye"></i>
+                                    <h4>Attention Map</h4>
+                                </div>
+                                <img id="lung-heatmap" alt="heatmap">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="tab-brain" class="tab-section">
+            <div class="section-header">
+                <div class="section-title-row">
+                    <i class="ph ph-brain section-icon"></i>
+                    <div>
+                        <h2>Beyin MRI Analizi</h2>
+                        <p>Glioma · Meningioma · Pituitary · No Tumor</p>
+                    </div>
+                </div>
+            </div>
+            <div class="analysis-layout">
+                <div class="upload-panel">
+                    <div class="upload-area" id="brain-upload-area">
+                        <input type="file" id="brain-file" accept="image/*" hidden>
+                        <div class="upload-placeholder" id="brain-placeholder">
+                            <i class="ph ph-cloud-arrow-up upload-icon"></i>
+                            <p>Şəkil yükləmək üçün klikləyin</p>
+                            <span class="upload-hint">PNG, JPG — maks 10MB</span>
+                        </div>
+                        <img id="brain-preview" class="preview-img hidden" alt="preview">
+                    </div>
+                    <button class="btn-primary" id="brain-analyze-btn" disabled>
+                        <i class="ph ph-magnifying-glass"></i>
+                        Analiz Et
+                    </button>
+                </div>
+                <div class="result-panel">
+                    <div class="result-placeholder" id="brain-result-placeholder">
+                        <i class="ph ph-image-square"></i>
+                        <p>Şəkil yükləyin və analiz edin</p>
+                    </div>
+                    <div class="loader hidden" id="brain-loader">
+                        <div class="spinner"></div>
+                        <p>Analiz edilir...</p>
+                    </div>
+                    <div class="result-content hidden" id="brain-result-content">
+                        <div class="diagnosis-badge" id="brain-badge"></div>
+                        <div class="charts-row">
+                            <div class="chart-box">
+                                <div class="chart-title">
+                                    <i class="ph ph-chart-bar"></i>
+                                    <h4>Ehtimal Diaqramı</h4>
+                                </div>
+                                <img id="brain-prob-chart" alt="prob chart">
+                            </div>
+                            <div class="chart-box">
+                                <div class="chart-title">
+                                    <i class="ph ph-eye"></i>
+                                    <h4>GradCAM</h4>
+                                </div>
+                                <img id="brain-gradcam" alt="gradcam">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="tab-symptom" class="tab-section">
+            <div class="section-header">
+                <div class="section-title-row">
+                    <i class="ph ph-clipboard-text section-icon"></i>
+                    <div>
+                        <h2>Simptom Yoxlayıcı</h2>
+                        <p>Azərbaycan · English · Русский</p>
+                    </div>
+                </div>
+            </div>
+            <div class="symptom-layout">
+                <div class="symptom-input-panel">
+                    <div class="textarea-wrapper">
+                        <i class="ph ph-pencil textarea-icon"></i>
+                        <textarea
+                            id="symptom-input"
+                            placeholder="Simptomlarınızı yazın... məsələn: qızdırma, baş ağrısı, öskürək"
+                            rows="5"
+                        ></textarea>
+                    </div>
+                    <button class="btn-primary" id="symptom-analyze-btn">
+                        <i class="ph ph-magnifying-glass"></i>
+                        Analiz Et
+                    </button>
+                </div>
+                <div class="result-panel">
+                    <div class="result-placeholder" id="symptom-result-placeholder">
+                        <i class="ph ph-stethoscope"></i>
+                        <p>Simptomlarınızı yazın və analiz edin</p>
+                    </div>
+                    <div class="loader hidden" id="symptom-loader">
+                        <div class="spinner"></div>
+                        <p>Analiz edilir...</p>
+                    </div>
+                    <div class="result-content hidden" id="symptom-result-content">
+                        <div class="matched-symptoms-box">
+                            <div class="box-title">
+                                <i class="ph ph-check-circle"></i>
+                                <h4>Tanınan Simptomlar</h4>
+                            </div>
+                            <div class="tags-row" id="symptom-matched"></div>
+                        </div>
+                        <div class="predictions-box">
+                            <div class="box-title">
+                                <i class="ph ph-ranking"></i>
+                                <h4>Diaqnoz Ehtimalları</h4>
+                            </div>
+                            <div id="symptom-predictions"></div>
+                        </div>
+                        <div class="chart-box full-width">
+                            <div class="chart-title">
+                                <i class="ph ph-chart-bar-horizontal"></i>
+                                <h4>SHAP — Simptom Təsiri</h4>
+                            </div>
+                            <img id="symptom-shap-chart" alt="shap chart">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="tab-chat" class="tab-section">
+            <div class="section-header">
+                <div class="section-title-row">
+                    <i class="ph ph-chat-circle-dots section-icon"></i>
+                    <div>
+                        <h2>AI Tibbi Asistant</h2>
+                        <p>Groq · Llama-3.3-70B · Çoxdilli dəstək</p>
+                    </div>
+                </div>
+            </div>
+            <div class="chat-layout">
+                <div class="chat-messages" id="chat-messages">
+                    <div class="chat-msg assistant">
+                        <div class="msg-avatar">
+                            <i class="ph ph-robot"></i>
+                        </div>
+                        <div class="msg-bubble">
+                            Salam! Mən MedBot-am. Diaqnoz nəticələriniz haqqında sual verə bilərsiniz.
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-context-toggle">
+                    <label class="toggle-label">
+                        <input type="checkbox" id="use-context" checked>
+                        <span class="toggle-track"></span>
+                        <span>Son diaqnoz nəticəsini kontekst kimi istifadə et</span>
+                    </label>
+                </div>
+                <div class="chat-input-row">
+                    <input
+                        type="text"
+                        id="chat-input"
+                        placeholder="Sualınızı yazın..."
+                    >
+                    <button class="btn-send" id="chat-send-btn">
+                        <i class="ph ph-paper-plane-tilt"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <i class="ph ph-warning"></i>
+        <p>Bu sistem yalnız tədqiqat məqsədi daşıyır. Klinik diaqnoz üçün istifadə etməyin.</p>
+    </footer>
+
+    <script src="js/api.js"></script>
+    <script src="js/lung.js"></script>
+    <script src="js/brain.js"></script>
+    <script src="js/symptom.js"></script>
+    <script src="js/chat.js"></script>
+    <script src="js/app.js"></script>
+
+</body>
+</html>
