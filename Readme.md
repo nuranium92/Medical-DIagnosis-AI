@@ -9,8 +9,7 @@ An AI-powered medical diagnostic system that combines computer vision, natural l
 MedAI integrates four independent diagnostic modules into a unified web interface. Each module targets a different input modality — radiological imaging, MRI scanning, and free-text symptom description — and produces interpretable results supported by visual and textual explanations.
 
 The system is designed around the principle that AI should explain its reasoning, not just deliver a verdict. Every prediction is accompanied by a visualisation or explanation that allows a clinician to assess the model's confidence and the features driving its decision.
-Check out [here]([https://huggingface.co/spaces/nuranium92/medical-diagnosis-ai]).
-
+Check out [Link Text](https://example.com)
 ---
 
 ## Modules
